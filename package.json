@@ -31,6 +31,7 @@
   "devDependencies": {
     "@babel/core": "^7.7.2",
     "@types/estree": "0.0.42",
+    "@types/jest": "^25.1.5",
     "@types/node": "^12.6.9",
     "babel-loader": "^8.0.6",
     "benchmark": "^2.1.1",
@@ -132,7 +133,8 @@
     "prelint": "yarn setup",
     "lint": "yarn code-lint && yarn special-lint && yarn type-lint && yarn pretty-lint && yarn spellcheck",
     "code-lint": "eslint . --ext '.js' --cache",
-    "type-lint": "tsc --pretty",
+    "type-lint": "tsc",
+    "test:types": "tsc -p tsconfig.test.json",
     "spellcheck": "cspell \"{.github,benchmark,bin,examples,hot,lib,schemas,setup,tooling}/**/*.{md,yml,yaml,js,json}\" \"*.md\"",
     "special-lint": "node node_modules/tooling/lockfile-lint && node node_modules/tooling/schemas-lint && node node_modules/tooling/inherit-types && node node_modules/tooling/format-schemas && node node_modules/tooling/format-file-header && node node_modules/tooling/compile-to-definitions && node node_modules/tooling/generate-types",
     "special-lint-fix": "node node_modules/tooling/inherit-types --write && node node_modules/tooling/format-schemas --write && node node_modules/tooling/format-file-header --write && node node_modules/tooling/compile-to-definitions --write && node node_modules/tooling/generate-types --write",
@@ -159,15 +161,22 @@
     "*.js|{lib,setup,bin,hot,tooling,schemas}/**/*.js|test/*.js|{test,examples}/**/webpack.config.js}": [
       "eslint --cache"
     ],
-    "*.{ts,json,yml,yaml,md}|examples/*.md": ["prettier --check"],
+    "*.{ts,json,yml,yaml,md}|examples/*.md": [
+      "prettier --check"
+    ],
     "*.md|{.github,benchmark,bin,examples,hot,lib,schemas,setup,tooling}/**/*.{md,yml,yaml,js,json}": [
       "cspell"
     ]
   },
   "jest": {
     "forceExit": true,
-    "setupFilesAfterEnv": ["<rootDir>/test/setupTestFramework.js"],
-    "testMatch": ["<rootDir>/test/*.test.js", "<rootDir>/test/*.unittest.js"],
+    "setupFilesAfterEnv": [
+      "<rootDir>/test/setupTestFramework.js"
+    ],
+    "testMatch": [
+      "<rootDir>/test/*.test.js",
+      "<rootDir>/test/*.unittest.js"
+    ],
     "watchPathIgnorePatterns": [
       "<rootDir>/.git",
       "<rootDir>/node_modules",
@@ -192,7 +201,9 @@
       "<rootDir>/coverage",
       "<rootDir>/.eslintcache"
     ],
-    "transformIgnorePatterns": ["<rootDir>"],
+    "transformIgnorePatterns": [
+      "<rootDir>"
+    ],
     "coverageDirectory": "<rootDir>/coverage",
     "coveragePathIgnorePatterns": [
       "\\.runtime\\.js$",
@@ -201,6 +212,8 @@
       "<rootDir>/node_modules"
     ],
     "testEnvironment": "node",
-    "coverageReporters": ["json"]
+    "coverageReporters": [
+      "json"
+    ]
   }
 }

@@ -492,7 +492,7 @@ export type ResolveLoader = ResolveOptions;
 /**
  * Stats options object or preset name.
  */
-export type Stats =
+export type StatsValue =
 	| (
 			| "none"
 			| "errors-only"
@@ -662,7 +662,7 @@ export interface WebpackOptions {
 	/**
 	 * Stats options object or preset name.
 	 */
-	stats?: Stats;
+	stats?: StatsValue;
 	/**
 	 * Environment to build for.
 	 */
@@ -2199,7 +2199,7 @@ export interface WebpackOptionsNormalized {
 	/**
 	 * Stats options object or preset name.
 	 */
-	stats: Stats;
+	stats: StatsValue;
 	/**
 	 * Environment to build for.
 	 */
